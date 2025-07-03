@@ -189,6 +189,116 @@ Question:
 
 ---
 
+## 📈 Additional Classifier Insights
+
+### 🔢 Intent Class Distribution
+
+A bar chart showing the number of examples per intent class in the training data. This helps identify class imbalance.
+
+![Intent Distribution](images/intent_distribution.png)
+
+---
+
+### 🧠 Top TF-IDF Features per Intent
+
+These are the most influential keywords the classifier learned for each intent:
+
+<details>
+<summary><strong>Top features for <code>goodbye</code></strong></summary>
+
+- goodbye: 3.128  
+- bye: 2.761  
+- thanks: 2.324  
+- now: 2.322  
+- later: 2.202  
+- out: 2.054  
+- that: 1.893  
+- see: 1.819  
+- time: 1.697  
+- done: 1.657  
+</details>
+
+<details>
+<summary><strong>Top features for <code>greeting</code></strong></summary>
+
+- hi: 4.374  
+- hello: 3.842  
+- hey: 3.734  
+- yo: 2.208  
+- let: 2.206  
+- good: 2.188  
+- again: 1.861  
+- greetings: 1.664  
+- back: 1.591  
+- to: 1.475  
+</details>
+
+<details>
+<summary><strong>Top features for <code>kosovo_info</code></strong></summary>
+
+- kosovo: 6.929  
+- is: 2.874  
+- in: 2.755  
+- where: 2.307  
+- are: 2.222  
+- what: 1.973  
+- does: 1.955  
+- about: 1.633  
+- there: 1.436  
+- can: 1.302  
+</details>
+
+<details>
+<summary><strong>Top features for <code>out_of_scope</code></strong></summary>
+
+- do: 1.867  
+- what: 1.696  
+- can: 1.495  
+- write: 1.410  
+- me: 1.346  
+- the: 1.158  
+- turn: 1.141  
+- book: 1.116  
+- make: 1.095  
+- who: 1.066  
+</details>
+
+These help interpret model behavior and explain decision boundaries.
+
+---
+
+### 📉 Normalized Confusion Matrix
+
+A version of the confusion matrix that shows percentages (per row), useful for identifying which intents are frequently misclassified.
+
+![Normalized Confusion Matrix](images/conf_matrix_normalized.png)
+
+---
+
+### 🧬 t-SNE Visualization
+
+A t-SNE projection of TF-IDF vectors from the test set into 2D space. Each point is colored by its true label.
+
+![t-SNE](images/tsne_visualization.png)
+
+Clusters indicate well-separated classes. Overlap between classes (e.g., `greeting` and `out_of_scope`) may signal ambiguity in the data or intent phrasing.
+
+---
+
+### ❗ Misclassified Examples
+
+Examples where the classifier predicted the wrong intent. Useful for reviewing edge cases or ambiguous inputs.
+
+| Text                          | True Label     | Predicted Label |
+|-------------------------------|----------------|------------------|
+| How do people get healthcare? | kosovo_info    | out_of_scope     |
+| End of line.                  | goodbye        | out_of_scope     |
+| Have a good one!              | goodbye        | greeting         |
+| What’s the latest?            | greeting       | out_of_scope     |
+| Howdy!                        | greeting       | out_of_scope     |
+
+---
+
 ## 📁 Project Structure
 
 ```
