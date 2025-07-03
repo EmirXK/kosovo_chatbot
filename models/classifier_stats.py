@@ -10,3 +10,16 @@ train_intent_classifier = joblib.load("models/intent_classifier.joblib")
 
 y_pred = train_intent_classifier.predict(X_test)
 print(classification_report(y_test, y_pred, target_names=train_intent_classifier.classes_))
+
+# get confusion matrix
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+cm = confusion_matrix(y_test, y_pred, labels=train_intent_classifier.classes_)
+plt.figure(figsize=(10, 7))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=train_intent_classifier.classes_, yticklabels=train_intent_classifier.classes_)
+plt.xlabel('Predicted')
+plt.ylabel('True')
+plt.title('Confusion Matrix')
+plt.show()
